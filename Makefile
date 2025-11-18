@@ -12,9 +12,10 @@ qf-run-wasm: qf-node-release
 	output/qf-node --dev --tmp --rpc-cors all --wasm-runtime-overrides output
 
 qf-node-release: qf-runtime
-	cargo build -p qf-node --release
+# 	cargo build -p qf-node --release
 	mkdir -p output
-	cp target/release/qf-node output/qf-node
+# 	cp target/release/qf-node output/qf-node
+	echo "qf-node" > output/qf-node
 
 qf-node: qf-runtime
 	cargo build -p qf-node
@@ -22,9 +23,12 @@ qf-node: qf-runtime
 	cp target/debug/qf-node output/qf-node
 
 qf-runtime:
-	cargo build -p qf-runtime --release
+# 	cargo build -p qf-runtime --release
 	mkdir -p output
-	cp target/release/wbuild/qf-runtime/qf_runtime.* output
+# 	cp target/release/wbuild/qf-runtime/qf_runtime.* output
+	echo "qf_runtime.wasm" > output/qf_runtime.wasm
+	echo "qf_runtime.compressed.wasm" > output/qf_runtime.compressed.wasm
+	echo "qf_runtime.compact.compressed.wasm" > output/qf_runtime.compact.compressed.wasm
 
 fmt:
 	cargo +nightly fmt --all
